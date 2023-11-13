@@ -1,2 +1,2 @@
-# dishcovery
+# Dishcovery
 A receipe generator application
