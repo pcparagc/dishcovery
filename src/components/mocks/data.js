@@ -1,0 +1,75 @@
+export const RestaurantData = {
+  data: [
+    {
+      id: 1,
+      Dish: "Butter Chicken",
+      Ingredients: "Chicken, Butter, Tomato, Cream ",
+      Time: "45 minutes",
+      Cuisine: "North Indian",
+    },
+    {
+      id: 2,
+      Dish: "Biryani ",
+      Ingredients: "Basmati Rice, Meat (Chicken, Lamb, or Goat), Spices ",
+      Time: "1-2 hours ",
+      Cuisine: "Mughlai ",
+    },
+    {
+      id: 3,
+      Dish: "Palak Paneer ",
+      Ingredients: "Paneer, Spinach, Cream ",
+      Time: "30 minutes",
+      Cuisine: "North Indian ",
+    },
+    {
+      id: 4,
+      Dish: "Chole Bhature ",
+      Ingredients: "Chickpeas, Bhatura, Spices ",
+      Time: "1-2 hours",
+      Cuisine: "North Indian",
+    },
+    {
+      id: 4,
+      Dish: "Masala Dosa ",
+      Ingredients: "Fermented Rice and Urad Dal Batter, Potatoes, Spices ",
+      Time: "30 minutes",
+      Cuisine: "South Indian",
+    },
+    {
+      id: 5,
+      Dish: " Rogan Josh",
+      Ingredients: "Lamb, Yogurt, Onion, Tomatoes, Kashmiri Spices",
+      Time: "1-2 hours",
+      Cuisine: "Kashmiri",
+    },
+    {
+      id: 6,
+      Dish: "Aloo Gobi ",
+      Ingredients: "Potatoes, Cauliflower, Indian Spices ",
+      Time: "30 minutes ",
+      Cuisine: "North Indian ",
+    },
+    {
+      id: 7,
+      Dish: "Dhokla ",
+      Ingredients:
+        "Fermented Rice and Chickpea Flour, Mustard Seeds, Curry Leaves",
+      Time: "30 minutes",
+      Cuisine: "Gujarati",
+    },
+    {
+      id: 8,
+      Dish: "Rajma Chawal ",
+      Ingredients: "Kidney Beans, Rice, Onion, Tomatoes, Spices",
+      Time: "1-2 hours",
+      Cuisine: "North Indian ",
+    },
+    {
+      id: 9,
+      Dish: "Chicken Tikka Masala",
+      Ingredients: "Chicken, Yogurt, Tomatoes, Garam Masala",
+      Time: "45 minutes",
+      Cuisine: "North Indian",
+    },
+  ],
+};

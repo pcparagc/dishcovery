@@ -1,28 +1,43 @@
-import Avatar from "@material-ui/core/Avatar";
 import Button from "@material-ui/core/Button";
 import Checkbox from "@material-ui/core/Checkbox";
+import Container from "@material-ui/core/Container";
 import CssBaseline from "@material-ui/core/CssBaseline";
 import FormControlLabel from "@material-ui/core/FormControlLabel";
 import Grid from "@material-ui/core/Grid";
 import Link from "@material-ui/core/Link";
-import Paper from "@material-ui/core/Paper";
 import TextField from "@material-ui/core/TextField";
 import Typography from "@material-ui/core/Typography";
 import { makeStyles } from "@material-ui/core/styles";
-import LockOutlinedIcon from "@material-ui/icons/LockOutlined";
+import { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import Logo from "../components/Logo";
+import { auth, signInWithEmailAndPassword } from "../firebase-helper";
 
 const useStyles = makeStyles((theme) => ({
-  root: {
-    height: "100vh",
+  "@global": {
+    body: {
+      backgroundColor: theme.palette.common.white,
+    },
   },
-  image: {
-    backgroundImage: "url(https://source.unsplash.com/random)",
-    backgroundRepeat: "no-repeat",
+  container: {
+    backgroundImage: 'url("background_login.jpg")',
     backgroundSize: "cover",
     backgroundPosition: "center",
+    minHeight: "100vh",
+    display: "flex",
+    flexDirection: "column",
+    alignItems: "center",
+    justifyContent: "center",
+  },
+  form_container: {
+    backgroundColor: "#fff",
+    borderRadius: theme.spacing(2),
+    overflow: "hidden",
+    boxShadow: "0 0 10px rgba(0, 0, 0, 0.1)",
   },
   paper: {
-    margin: theme.spacing(8, 4),
+    marginTop: theme.spacing(4),
+    marginBottom: theme.spacing(4),
     display: "flex",
     flexDirection: "column",
     alignItems: "center",
@@ -33,27 +48,51 @@ const useStyles = makeStyles((theme) => ({
   },
   form: {
     width: "100%", // Fix IE 11 issue.
-    marginTop: theme.spacing(1),
+    marginTop: theme.spacing(3),
   },
   submit: {
     margin: theme.spacing(3, 0, 2),
   },
 }));
 
-const Login = () => {
+export default function Login() {
+  const navigate = useNavigate();
   const classes = useStyles();
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+
+  const signIn = async (e) => {
+    e.preventDefault();
+    try {
+      const userCredential = await signInWithEmailAndPassword(
+        auth,
+        email,
+        password
+      );
+      const user = userCredential.user;
+      console.log("User signed in:", user);
+      navigate("/home");
+    } catch (error) {
+      const errorCode = error.code;
+      const errorMessage = error.message;
+      console.error("Error signing in:", errorCode, errorMessage);
+    }
+  };
 
   return (
-    <Grid container component="main" className={classes.root}>
-      <CssBaseline />
-      <Grid item xs={false} sm={4} md={7} className={classes.image} />
-      <Grid item xs={12} sm={8} md={5} component={Paper} elevation={6} square>
+    <div className={classes.container}>
+      <Container
+        component="main"
+        maxWidth="xs"
+        className={classes.form_container}
+      >
+        <CssBaseline />
         <div className={classes.paper}>
-          <Avatar className={classes.avatar}>
-            <LockOutlinedIcon />
-          </Avatar>
+          {/* <Avatar className={classes.avatar}> */}
+          <Logo src="dishcovery_logo.png" />
+          {/* </Avatar> */}
           <Typography component="h1" variant="h5">
-            Sign in
+            Login
           </Typography>
           <form className={classes.form} noValidate>
             <TextField
@@ -66,6 +105,8 @@ const Login = () => {
               name="email"
               autoComplete="email"
               autoFocus
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
             />
             <TextField
               variant="outlined"
@@ -77,6 +118,8 @@ const Login = () => {
               type="password"
               id="password"
               autoComplete="current-password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
             />
             <FormControlLabel
               control={<Checkbox value="remember" color="primary" />}
@@ -88,6 +131,7 @@ const Login = () => {
               variant="contained"
               color="primary"
               className={classes.submit}
+              onClick={signIn}
             >
               Sign In
             </Button>
@@ -105,9 +149,7 @@ const Login = () => {
             </Grid>
           </form>
         </div>
-      </Grid>
-    </Grid>
+      </Container>
+    </div>
   );
-};
-
-export default Login;
+}
