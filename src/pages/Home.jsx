@@ -19,6 +19,12 @@ import { createTheme, ThemeProvider } from "@mui/material/styles";
 import Dropzone from "../components/Dropzone";
 import TextArea from "../components/TextArea";
 import Logo from "../components/Logo";
+import FacebookIcon from '@mui/icons-material/Facebook';
+import InstagramIcon from '@mui/icons-material/Instagram';
+import MailOutlineIcon from '@mui/icons-material/MailOutline';
+import { Link as RouterLink } from 'react-router-dom';
+import Tabs from '@mui/material/Tabs';
+import Tab from '@mui/material/Tab';
 
 function Copyright() {
   return (
@@ -57,10 +63,34 @@ export default function Home() {
       >
         <AppBar position="relative" style={{ backgroundColor: "#ffb703" }}>
           <Toolbar>
-            <Logo src="dishcovery_icon.png" width={50} height={50} />
-            <Typography variant="h6" color="inherit" noWrap>
-              Dishcovery
-            </Typography>
+            <Logo src="dishcovery_icon.png" width={120} height={120} />
+            <Stack direction="column">
+              <Typography variant="h3" color="inherit" align="left" noWrap>
+                Dishcovery
+              </Typography>
+              <Typography variant="h6" color="inherit" fontStyle="italic" noWrap>
+              Ingredients. Inspire. Indulge.
+              </Typography>
+            </Stack>
+            <Grid container justifyContent="flex-end" alignItems="center" spacing={2}>
+              <Grid item>
+                <Tabs
+                  value={false}
+                  textColor="inherit"
+                  indicatorColor="secondary"
+                  aria-label="tabs navigation"
+                >
+                  <Tab label="Signup" component="a" href="/signup" target="_blank" />
+                  <Tab label="Recipes" component="a" href="https://www.simplyrecipes.com/" target="_blank" />
+                  <Tab label="Contact" component="a" href="#contact" onClick={(event) => {
+                    event.preventDefault();
+                    const contactSection = document.getElementById('contact');
+                    if (contactSection) {
+                      contactSection.scrollIntoView({ behavior: 'smooth' });}}}
+                  />
+                </Tabs>
+              </Grid>
+            </Grid>
           </Toolbar>
         </AppBar>
         <main>
@@ -79,9 +109,11 @@ export default function Home() {
                 variant="h2"
                 align="center"
                 color="text.primary"
+                fontStyle="italic"
+                fontFamily="serif"
                 gutterBottom
               >
-                Upload Images
+                Let's Dishcover
               </Typography>
               <Typography
                 variant="h5"
@@ -89,11 +121,10 @@ export default function Home() {
                 color="text.secondary"
                 paragraph
               >
-                Your Culinary Companion for Personalized Recipes - Unleash a
-                world of flavors at your fingertips!
+                 Your Culinary Companion for Personalized Recipes - Unleash a world of flavors at your fingertips!
               </Typography>
               <Dropzone />
-              <Divider sx={{ my: 4, borderColor: "#000" }} />{" "}
+              
               {/* Add border color to the divider */}
             </Container>
           </Box>
@@ -110,9 +141,9 @@ export default function Home() {
           </Container>
         </main>
         {/* Footer */}
-        <Box sx={{ bgcolor: "background.paper", p: 6 }} component="footer">
-          <Typography variant="h6" align="center" gutterBottom>
-            Footer
+        <Box sx={{ backgroundColor: "rgba(255, 183, 3, 0.7)", p: 6 }} component="footer" id="contact">
+          <Typography variant="h6" align="center" sx={{color:"darkblack", fontStyle:"italic", fontFamily:"'Segoe UI', serif"}} gutterBottom>
+          "You don't need a silver fork to eat good food."
           </Typography>
           <Typography
             variant="subtitle1"
@@ -120,8 +151,19 @@ export default function Home() {
             color="text.secondary"
             component="p"
           >
-            Something here to give the footer a purpose!
+           To know more, visit 
           </Typography>
+          <Stack direction="row" justifyContent="center" spacing={2}>
+          <Link href="https://m.facebook.com/thefoodblog.net">
+            <FacebookIcon />
+          </Link>
+          <Link href="https://instagram.com/budgetbytes?igshid=NzZlODBkYWE4Ng==">
+            <InstagramIcon />
+          </Link>
+          <Link href="mailto:kveena@calstatela.edu">
+            <MailOutlineIcon />
+          </Link>
+          </Stack>
           <Copyright />
         </Box>
         {/* End footer */}
